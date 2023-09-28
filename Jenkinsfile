@@ -24,7 +24,7 @@ pipeline {
 
     }
 
-    post {
+  /*   post {
         success {
             // Este bloque se ejecutará si la etapa anterior fue exitosa
             // Puedes agregar notificaciones o tareas adicionales aquí
@@ -34,5 +34,5 @@ pipeline {
             // Este bloque se ejecutará si la etapa anterior falló
             // Puedes agregar acciones de manejo de errores aquí
         }
-    }
+    } */
 }
