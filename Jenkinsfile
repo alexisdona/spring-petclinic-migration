@@ -1,9 +1,11 @@
 pipeline {
     agent any
         tools {
-            maven 'maven 3.9.4'
-            jdk 'Java 8.0.372'
-        }
+             // Utiliza el nombre configurado para Maven en tu instancia de Jenkins.
+             maven 'Maven-3.9.4'
+             // Utiliza el nombre configurado para JDK en tu instancia de Jenkins.
+             jdk 'Java-8.0.372'
+         }
 
     stages {
         stage('Checkout') {
