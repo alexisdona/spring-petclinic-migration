@@ -4,7 +4,7 @@ pipeline {
              // Utiliza el nombre configurado para Maven en tu instancia de Jenkins.
              maven 'Maven-3.9.4'
              // Utiliza el nombre configurado para JDK en tu instancia de Jenkins.
-             jdk 'Java-8.0.372'
+             jdk 'Java-11.0.19'
          }
 
     stages {
