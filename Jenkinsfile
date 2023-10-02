@@ -21,21 +21,21 @@ pipeline {
 
         stage('Clean install') {
             steps {
-                // Configurar el entorno de Maven
-                sh 'mvn clean install' // Esto compilará y ejecutará los tests
-
-                // Opcional: Puedes agregar otras tareas relacionadas con pruebas aquí
+                sh 'mvn clean install'
             }
         }
 
         stage('Run Test') {
                     steps {
-                        // Configurar el entorno de Maven
-                        sh 'mvn test' // Esto compilará y ejecutará los tests
-
-                        // Opcional: Puedes agregar otras tareas relacionadas con pruebas aquí
+                        sh 'mvn test'
                     }
         }
+
+          stage('Run given recipes') {
+                            steps {
+                                sh 'mvn rewrite:run -Drewrite.activeRecipes=org.openrewrite.staticanalysis.CodeCleanup'
+                            }
+                }
 
     }
 
