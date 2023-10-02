@@ -19,13 +19,22 @@ pipeline {
             }
         }
 
-        stage('Build and Test') {
+        stage('Clean install') {
             steps {
                 // Configurar el entorno de Maven
                 sh 'mvn clean install' // Esto compilará y ejecutará los tests
 
                 // Opcional: Puedes agregar otras tareas relacionadas con pruebas aquí
             }
+        }
+
+        stage('Run Test') {
+                    steps {
+                        // Configurar el entorno de Maven
+                        sh 'mvn test' // Esto compilará y ejecutará los tests
+
+                        // Opcional: Puedes agregar otras tareas relacionadas con pruebas aquí
+                    }
         }
 
     }

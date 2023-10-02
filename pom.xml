@@ -13,14 +13,11 @@
     <version>2.1.18.RELEASE</version>
   </parent>
   <name>petclinic</name>
-
-  <properties>
-
+    <properties>
     <!-- Generic properties -->
     <java.version>11</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
     <!-- Web dependencies -->
     <webjars-locator.version>0.45</webjars-locator.version>
     <webjars-bootstrap.version>3.3.6</webjars-bootstrap.version>
@@ -131,7 +128,25 @@
 
   <build>
     <plugins>
-<plugin>
+        <plugin>
+            <groupId>org.openrewrite.maven</groupId>
+            <artifactId>rewrite-maven-plugin</artifactId>
+            <version>5.5.2</version>
+            <configuration>
+                <activeRecipes>
+                    <recipe>org.openrewrite.jenkins.ModernizePlugin</recipe>
+                </activeRecipes>
+            </configuration>
+            <dependencies>
+                <dependency>
+                    <groupId>org.openrewrite.recipe</groupId>
+                    <artifactId>rewrite-jenkins</artifactId>
+                    <version>0.2.2</version>
+                </dependency>
+            </dependencies>
+        </plugin>
+    <plugin>
+
   <groupId>org.openrewrite.maven</groupId>
   <artifactId>rewrite-maven-plugin</artifactId>
   <version>5.2.6</version>
@@ -140,7 +155,7 @@
       <recipe>org.openrewrite.java.format.AutoFormat</recipe>
     </activeRecipes>
   </configuration>
-</plugin>
+    </plugin>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>

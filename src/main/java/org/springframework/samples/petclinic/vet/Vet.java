@@ -64,7 +64,7 @@ public class Vet extends Person {
     public List<Specialty> getSpecialties() {
         List<Specialty> sortedSpecs = new ArrayList<>(getSpecialtiesInternal());
         PropertyComparator.sort(sortedSpecs,
-                new MutableSortDefinition("name", true, true));
+            new MutableSortDefinition("name", true, true));
         return Collections.unmodifiableList(sortedSpecs);
     }
 
