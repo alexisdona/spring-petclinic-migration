@@ -50,7 +50,7 @@ pipeline {
                                                        git commit -m "Ejecución de receta"
                                                        git push origin 2.1.x
                                                    '''
-                                               }
+
                                            }
                 }
     }
