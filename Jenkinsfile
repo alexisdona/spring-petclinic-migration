@@ -33,7 +33,7 @@ pipeline {
 
           stage('Run given recipes') {
                             steps {
-                                sh 'mvn rewrite:run -Drewrite.activeRecipes=org.openrewrite.staticanalysis.CodeCleanup'
+                                sh 'mvn rewrite:run -Drewrite.activeRecipes= [org.openrewrite.java.format.AutoFormat, org.openrewrite.java.RemoveUnusedImports]'
                             }
                 }
 
