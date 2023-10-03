@@ -37,35 +37,27 @@ pipeline {
                             }
                 }
 
-          stage('Save recipes execution') {
+                stage("Create artifacts or make changes") {
+                            steps {
+                                sh "touch testfile"
+                                sh "git add ."
+                                sh "git commit -m 'Add testfile from Jenkins Pipeline'"
+                            }
+                        }
+
+                stage("Push to Git Repository") {
                            steps {
-                                           script {
-                                               // Configura las credenciales de Git si es necesario
-                                               withCredentials([usernamePassword(credentialsId: 'a33f5f1b-1b80-47f8-bee9-5061fe836c9c', usernameVariable: 'alexisdona', passwordVariable: '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')]) {
-                                                   // Realiza los cambios en el repositorio
-                                                   sh '''
-                                                       git config user.email "jenkins@example.com"
-                                                       git config user.name "Jenkins automatic commit "
-                                                       git add .
-                                                       git commit -m "Ejecución de receta"
-                                                       git push origin 2.1.x
-                                                   '''
+                                        withCredentials([gitUsernamePassword(credentialsId: 'a33f5f1b-1b80-47f8-bee9-5061fe836c9c', gitToolName: 'Default')]) {
+                                            sh "git push -u origin 2.1.x"
+                                        }
+                                    }
 
-                                           }
-                           }
-               }
-          }
-    }
+                    }
 
-  /*   post {
-        success {
-            // Este bloque se ejecutará si la etapa anterior fue exitosa
-            // Puedes agregar notificaciones o tareas adicionales aquí
-        }
+                            post {
+                                always {
+                                    deleteDir()
+                                }
+                            }
 
-        failure {
-            // Este bloque se ejecutará si la etapa anterior falló
-            // Puedes agregar acciones de manejo de errores aquí
-        }
-    } */
 }
