@@ -41,7 +41,7 @@ pipeline {
                            steps {
                                            script {
                                                // Configura las credenciales de Git si es necesario
-                                               withCredentials([usernamePassword(credentialsId: 'git-credentials', usernameVariable: 'alexisdona', passwordVariable: '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')]) {
+                                               withCredentials([usernamePassword(credentialsId: 'git-credentials', usernameVariable: 'alexisdona', passwordVariable: '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')]) {
                                                    // Realiza los cambios en el repositorio
                                                    sh '''
                                                        git config user.email "jenkins@example.com"
