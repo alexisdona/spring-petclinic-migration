@@ -37,17 +37,13 @@ pipeline {
                             }
                 }
 
-          stage("Create artifacts or make changes") {
-                    steps {
-                                sh "touch testfile"
-                                sh "git add ."
-                                sh "git commit -m 'Add testfile from Jenkins Pipeline'"
-                            }
-               }
 
           stage("Push to Git Repository") {
                     steps {
                               withCredentials([gitUsernamePassword(credentialsId: 'a33f5f1b-1b80-47f8-bee9-5061fe836c9c', gitToolName: 'Default')]) {
+                                            sh "touch testfile"
+                                            sh "git add ."
+                                            sh "git commit -m 'Add testfile from Jenkins Pipeline'"
                                             sh "git push origin 2.1.x"
                                         }
                                     }
