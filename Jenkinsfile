@@ -37,6 +37,22 @@ pipeline {
                             }
                 }
 
+          stage('Save recipes execution') {
+                           steps {
+                                           script {
+                                               // Configura las credenciales de Git si es necesario
+                                               withCredentials([usernamePassword(credentialsId: 'git-credentials', usernameVariable: 'alexisdona', passwordVariable: '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')]) {
+                                                   // Realiza los cambios en el repositorio
+                                                   sh '''
+                                                       git config user.email "jenkins@example.com"
+                                                       git config user.name "Jenkins automatic commit "
+                                                       git add .
+                                                       git commit -m "Ejecución de receta"
+                                                       git push origin 2.1.x
+                                                   '''
+                                               }
+                                           }
+                }
     }
 
   /*   post {
