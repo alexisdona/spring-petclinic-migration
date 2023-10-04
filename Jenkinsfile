@@ -17,6 +17,7 @@ pipeline {
                           submoduleCfg: [],
                           userRemoteConfigs: [[url: ' https://github.com/alexisdona/spring-petclinic-migration.git']]])
                           sh "git checkout 2.1.x" //To get a local branch tracking remote
+                          sh "git pull origin 2.1.x"
             }
         }
 
