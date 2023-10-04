@@ -16,6 +16,7 @@ pipeline {
                           extensions: [[$class: 'CloneOption', noTags: false, reference: '', shallow: false, timeout: 10]],
                           submoduleCfg: [],
                           userRemoteConfigs: [[url: ' https://github.com/alexisdona/spring-petclinic-migration.git']]])
+                          sh "git checkout 2.1.x" //To get a local branch tracking remote
             }
         }
 
@@ -32,28 +33,24 @@ pipeline {
         }
 
           stage('Run given recipes and push to remote') {
-                    steps {     sh "git checkout 2.1.x"
+                    steps {
                                 sh 'mvn rewrite:run -Drewrite.activeRecipes=org.openrewrite.java.format.AutoFormat,org.openrewrite.java.RemoveUnusedImports'
-                                sh "git add ."
-                                sh "git commit -m 'cambios de recetas'"
-                                sh "git push -u origin 2.1.x"
+
                             }
                 }
-        }
 
-       /*   stage("Push to Git Repository") {
+          stage("Push to Git Repository") {
                     steps {
                               withCredentials([gitUsernamePassword(credentialsId: 'a33f5f1b-1b80-47f8-bee9-5061fe836c9c', gitToolName: 'Default')]) {
-                                            sh "git checkout 2.1.x"
-                                            sh "touch testfile"
+
                                             sh "git add ."
-                                            sh "git commit -m 'Add testfile from Jenkins Pipeline'"
+                                            sh "git commit -m 'push openrewrite changes to remote'"
                                             sh "git push -u origin 2.1.x"
                                         }
                                     }
 
                     }
-            } */
-
+            }
+        }
 }
 
