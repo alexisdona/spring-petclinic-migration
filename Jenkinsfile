@@ -16,7 +16,6 @@ pipeline {
                           extensions: [[$class: 'CloneOption', noTags: false, reference: '', shallow: false, timeout: 10]],
                           submoduleCfg: [],
                           userRemoteConfigs: [[url: ' https://github.com/alexisdona/spring-petclinic-migration.git']]])
-                          sh "git pull"
             }
         }
 
