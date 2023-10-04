@@ -39,7 +39,7 @@ pipeline {
                                 sh "git push -u origin 2.1.x"
                             }
                 }
-
+        }
 
        /*   stage("Push to Git Repository") {
                     steps {
