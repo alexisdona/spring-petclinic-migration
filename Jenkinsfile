@@ -16,6 +16,7 @@ pipeline {
                           extensions: [[$class: 'CloneOption', noTags: false, reference: '', shallow: false, timeout: 10]],
                           submoduleCfg: [],
                           userRemoteConfigs: [[url: ' https://github.com/alexisdona/spring-petclinic-migration.git']]])
+                          sh "git pull"
             }
         }
 
@@ -25,17 +26,15 @@ pipeline {
             }
         }
 
-        stage('Run Test') {
+        stage('Run Tests') {
                     steps {
                         sh 'mvn test'
                     }
         }
 
-          stage('Run given recipes') {
+          stage('Run given recipes and push to remote') {
                     steps {     sh "git checkout 2.1.x"
-                                sh "git pull"
                                 sh 'mvn rewrite:run -Drewrite.activeRecipes=org.openrewrite.java.format.AutoFormat,org.openrewrite.java.RemoveUnusedImports'
-                                sh 'git status'
                                 sh "git add ."
                                 sh "git commit -m 'cambios de recetas'"
                                 sh "git push -u origin 2.1.x"
