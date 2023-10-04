@@ -34,8 +34,9 @@ pipeline {
           stage('Run given recipes') {
                     steps {     sh "git checkout 2.1.x"
                                 sh 'mvn rewrite:run -Drewrite.activeRecipes=org.openrewrite.java.format.AutoFormat,org.openrewrite.java.RemoveUnusedImports'
+                                sh 'git status'
                                 sh "git add ."
-                                sh "git commit -m 'Add testfile from Jenkins Pipeline'"
+                                sh "git commit -m 'cambios de recetas'"
                                 sh "git push -u origin 2.1.x"
                             }
                 }
