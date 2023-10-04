@@ -36,22 +36,21 @@ pipeline {
           stage('Run given recipes and push to remote') {
                     steps {
                                 sh 'mvn rewrite:run -Drewrite.activeRecipes=org.openrewrite.java.format.AutoFormat,org.openrewrite.java.RemoveUnusedImports'
-
+                                   withCredentials([gitUsernamePassword(credentialsId: 'a33f5f1b-1b80-47f8-bee9-5061fe836c9c', gitToolName: 'Default')]) {
+                                   sh "git add ."
+                                   sh "git commit -m 'push openrewrite changes to remote'"
+                                   sh "git push -u origin 2.1.x"
+                                            }
                             }
                 }
 
-          stage("Push to Git Repository") {
+        /*  stage("Push to Git Repository") {
                     steps {
-                              withCredentials([gitUsernamePassword(credentialsId: 'a33f5f1b-1b80-47f8-bee9-5061fe836c9c', gitToolName: 'Default')]) {
 
-                                            sh "git add ."
-                                            sh "git commit -m 'push openrewrite changes to remote'"
-                                            sh "git push -u origin 2.1.x"
-                                        }
                                     }
 
                     }
-            }
-
+            }*/
+    }
 }
 
