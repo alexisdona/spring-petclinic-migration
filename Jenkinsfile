@@ -33,6 +33,7 @@ pipeline {
 
           stage('Run given recipes') {
                     steps {     sh "git checkout 2.1.x"
+                                sh "git pull"
                                 sh 'mvn rewrite:run -Drewrite.activeRecipes=org.openrewrite.java.format.AutoFormat,org.openrewrite.java.RemoveUnusedImports'
                                 sh 'git status'
                                 sh "git add ."
